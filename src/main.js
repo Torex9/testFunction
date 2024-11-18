@@ -4,8 +4,8 @@ import { Client, Databases } from 'node-appwrite';
 export default async ({ req, res, log, error }) => {
   // Initialize Appwrite client
   const client = new Client()
-    .setEndpoint(process.env.NEXT_PUBLIC_ENDPOINT)
-    .setProject(process.env.PROJECT_ID)
+    .setEndpoint('https://cloud.appwrite.io/v1')
+    .setProject('67317d0100250021489f')
     .setKey(req.headers['x-appwrite-key'] ?? '');
 
   // Initialize Databases service
@@ -15,8 +15,8 @@ export default async ({ req, res, log, error }) => {
     
       // List documents from the collection, sorted by createdAt in descending order
       const response = await databases.listDocuments(
-        process.env.DATABASE_ID, // Your database ID
-        process.env.APPOINTMENT_COLLECTION_ID, // Your collection ID
+        '67317e6000069e6c10c9', // Your database ID
+        '67317eca00290232aa78', // Your collection ID
         [], // Optional filters (empty in this case)
         1, // Limit the result to just 1 document
         0, // Skip 0 documents (you can adjust this for pagination)
