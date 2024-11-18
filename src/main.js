@@ -12,8 +12,7 @@ export default async ({ req, res, log, error }) => {
   const databases = new Databases(client);
 
   try {
-    // Check if the request is for fetching the latest item from the collection
-    if (req.path === "/latest-item") {
+    
       // List documents from the collection, sorted by createdAt in descending order
       const response = await databases.listDocuments(
         process.env.DATABASE_ID, // Your database ID
@@ -27,8 +26,8 @@ export default async ({ req, res, log, error }) => {
       // Check if there are any documents returned
       if (response.documents.length > 0) {
         // Return the most recent document
-        const response = res.json(response.documents[0])
-        log(response)
+        const resp = res.json(response.documents[0])
+        log(resp)
         return res.json(response.documents[0]);
       } else {
         // No documents found
@@ -36,15 +35,7 @@ export default async ({ req, res, log, error }) => {
         error(error)
         return res.json({ error: "No documents found in the collection" });
       }
-    }
-
-    // Default response for other paths
-    return res.json({
-      motto: "Build like a team of hundreds_",
-      learn: "https://appwrite.io/docs",
-      connect: "https://appwrite.io/discord",
-      getInspired: "https://builtwith.appwrite.io",
-    });
+    
 
   } catch (err) {
     // Log and return any error that occurs
