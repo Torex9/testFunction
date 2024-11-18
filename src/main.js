@@ -34,6 +34,7 @@ export default async ({ req, res, log, error }) => {
       const errorResponse = { error: "No documents found in the collection" };
       log(errorResponse);
       return res.json(errorResponse);
+      //test
     }
   } catch (err) {
     // Log and return any error that occurs
